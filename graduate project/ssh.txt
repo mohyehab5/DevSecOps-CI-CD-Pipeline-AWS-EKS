@@ -1,0 +1,21 @@
+niobasic conf:
+line cons 0
+no logi 
+exec-ti 0 0
+no ip domain look
+host 
+
+username project privilege 15 secret pro123
+
+
+ip domain-name project
+cry key generate rsa mod 1024
+line vty 0 4
+login local
+tran in  all
+Exit
+
+int vlan 1
+..
+..
+..

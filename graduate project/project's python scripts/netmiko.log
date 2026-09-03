@@ -1,0 +1,1480 @@
+DEBUG:paramiko.transport:starting thread (client mode): 0x9c03a808
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.5.0
+DEBUG:paramiko.transport:Remote version/idstring: SSH-1.99-Cisco-1.25
+INFO:paramiko.transport:Connected (version 1.99, client Cisco-1.25)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: diffie-hellman-group-exchange-sha1, diffie-hellman-group14-sha1, diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:server key: ssh-rsa
+DEBUG:paramiko.transport:client encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:server encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:client mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:server mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: diffie-hellman-group-exchange-sha1
+DEBUG:paramiko.transport:HostKey: ssh-rsa
+DEBUG:paramiko.transport:Cipher: aes128-cbc
+DEBUG:paramiko.transport:MAC: hmac-sha1
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:Got server p (2048 bits)
+DEBUG:paramiko.transport:kex engine KexGex specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 192.168.1.111: b'3cc44a77cbde7832353bb47230faa299'
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+R1#
+R1#
+DEBUG:netmiko:read_channel: terminal width 511
+
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+R1#
+R1#terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1#terminal length 0
+R1#
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R1#terminal length 0
+DEBUG:netmiko:
+R1#terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:write_channel: b'show run | i host\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show run | i host
+
+DEBUG:netmiko:Pattern found: (show\ run\ \|\ i\ host) show run | i host
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: hostname R1
+R1#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1#
+DEBUG:netmiko:write_channel: b'configure terminal\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: confi
+DEBUG:netmiko:read_channel: gure terminal
+
+DEBUG:netmiko:Pattern found: (configure\ terminal) configure terminal
+DEBUG:netmiko:read_channel: Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#
+DEBUG:netmiko:Pattern found: (R1.*) 
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router
+DEBUG:netmiko:read_channel:  eigrp 7
+
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-
+DEBUG:netmiko:read_channel: summary
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1(config)#router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router
+DEBUG:netmiko:read_channel:  eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: variance 1
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 1) variance 1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 1
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'network 100.100.100.0 0.0.0.255\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: network 100.
+DEBUG:netmiko:read_channel: 100.100.
+DEBUG:netmiko:read_channel: 0 0.0.0.255
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (network\ 100\.100\.100\.0\ 0\.0\.0\.255) network 100.100.100.0 0.0.0.255
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#network 100.100.100.0 0.0.0.255
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'key chain CISCO\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: key chain CISC
+DEBUG:netmiko:read_channel: O
+R1(config-keychain)#
+DEBUG:netmiko:Pattern found: (key\ chain\ CISCO) key chain CISCO
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-keychain)#
+DEBUG:netmiko:write_channel: b'key 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: key 1
+
+DEBUG:netmiko:Pattern found: (key\ 1) key 1
+DEBUG:netmiko:read_channel: R1(config-keychain-key)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-keychain-key)#
+DEBUG:netmiko:write_channel: b'key-string CCNA\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: key-string 
+DEBUG:netmiko:read_channel: CCNA
+R1(config-keychain-key)#
+DEBUG:netmiko:Pattern found: (key\-string\ CCNA) key-string CCNA
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-keychain-key)#
+DEBUG:netmiko:key chain CISCO
+R1(config-keychain)#key 1
+R1(config-keychain-key)#key-string CCNA
+R1(config-keychain-key)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-keychain-key)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-keychain-key)#
+DEBUG:netmiko:write_channel: b'interface f0/0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: interf
+DEBUG:netmiko:read_channel: ace f0/0
+
+DEBUG:netmiko:Pattern found: (interface\ f0/0) interface f0/0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:interface f0/0
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'ip authentication key-chain eigrp 7 CISCO\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: ip authenti
+DEBUG:netmiko:read_channel: cation k
+DEBUG:netmiko:read_channel: ey-chain eigrp 7 CISC
+DEBUG:netmiko:read_channel: O
+
+DEBUG:netmiko:Pattern found: (ip\ authentication\ key\-chain\ eigrp\ 7\ CISCO) ip authentication key-chain eigrp 7 CISCO
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'ip authentication mode eigrp 7 md5\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: ip authentication m
+DEBUG:netmiko:read_channel: ode eigrp 7 md5
+R1(config-if)#
+DEBUG:netmiko:Pattern found: (ip\ authentication\ mode\ eigrp\ 7\ md5) ip authentication mode eigrp 7 md5
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:ip authentication key-chain eigrp 7 CISCO
+R1(config-if)#ip authentication mode eigrp 7 md5
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'interface f0/0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: interface f0/0
+
+DEBUG:netmiko:Pattern found: (interface\ f0/0) interface f0/0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-if)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'ip hello-interval eigrp 7 5\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: ip hello-interval ei
+DEBUG:netmiko:read_channel: grp 7 5
+R1(config-if)#
+DEBUG:netmiko:Pattern found: (ip\ hello\-interval\ eigrp\ 7\ 5) ip hello-interval eigrp 7 5
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:interface f0/0
+R1(config-if)#ip hello-interval eigrp 7 5
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'interface f0/0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: interface f0/0
+R1(config-if)#
+DEBUG:netmiko:Pattern found: (interface\ f0/0) interface f0/0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'ip hold-time eigrp 7 16\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: ip hold-time eigrp 7
+DEBUG:netmiko:read_channel:  16
+R1(config-if)#
+DEBUG:netmiko:Pattern found: (ip\ hold\-time\ eigrp\ 7\ 16) ip hold-time eigrp 7 16
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:interface f0/0
+R1(config-if)#ip hold-time eigrp 7 16
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'interface f0/0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: interface f0/0
+R1(config-if)#
+DEBUG:netmiko:Pattern found: (interface\ f0/0) interface f0/0
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'ip bandwidth-percent eigrp 7 50\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: ip ban
+DEBUG:netmiko:read_channel: dwidth-percent eigrp
+DEBUG:netmiko:read_channel:  7 50
+R1(config-if)#
+DEBUG:netmiko:Pattern found: (ip\ bandwidth\-percent\ eigrp\ 7\ 50) ip bandwidth-percent eigrp 7 50
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-if)#
+DEBUG:netmiko:interface f0/0
+R1(config-if)#ip bandwidth-percent eigrp 7 50
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-if)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-if)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-summary
+
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: variance 1
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 1) variance 1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 1
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-summary
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: variance 1
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 1) variance 1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 1
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp
+DEBUG:netmiko:read_channel:  7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-summary
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: varianc
+DEBUG:netmiko:read_channel: e 1
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 1) variance 1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 1
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-summary
+
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router 
+DEBUG:netmiko:read_channel: eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: varian
+DEBUG:netmiko:read_channel: ce 1
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 1) variance 1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 1
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-summa
+DEBUG:netmiko:read_channel: ry
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eig
+DEBUG:netmiko:read_channel: rp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 1\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: varianc
+DEBUG:netmiko:read_channel: e 1
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 1) variance 1
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 1
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'do show ip route eigrp\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: do show ip route eig
+DEBUG:netmiko:read_channel: rp
+
+DEBUG:netmiko:Pattern found: (do\ show\ ip\ route\ eigrp) do show ip route eigrp
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, + - replicated route
+
+Gateway of last resort is not set
+
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, + - replicated route
+
+Gateway of last resort is not set
+
+R1(config-router)#
+DEBUG:netmiko:do show ip route eigrp
+Codes: L - local, C - connected, S - static, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area 
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2
+       i - IS-IS, su - IS-IS summary, L1 - IS-IS level-1, L2 - IS-IS level-2
+       ia - IS-IS inter area, * - candidate default, U - per-user static route
+       o - ODR, P - periodic downloaded static route, + - replicated route
+
+Gateway of last resort is not set
+
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'do show ip protocols\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: do show ip p
+DEBUG:netmiko:read_channel: rotocols
+
+DEBUG:netmiko:Pattern found: (do\ show\ ip\ protocols) do show ip protocols
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: *** IP Routing is NSF aware ***
+
+Routing Protocol is "eigrp 7"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  Redistributing: eigrp 7
+  EIGRP-IPv4 Protocol for AS(7)
+    Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+    NSF-aware route hold timer is 240
+    Router-ID: 200.200.200.1
+    Topology : 0 (base) 
+      Active Timer: 3 min
+      Distance: internal 90 external 170
+      Maximum path: 4
+      Maximum hopcount 100
+      Maximum metric variance 1
+
+  Automatic Summarization: enabled
+  Maximum path: 4
+  Routing for Networks:
+    100.100.100.0/24
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: internal 90 external 170
+
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "eigrp 7"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  Redistributing: eigrp 7
+  EIGRP-IPv4 Protocol for AS(7)
+    Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+    NSF-aware route hold timer is 240
+    Router-ID: 200.200.200.1
+    Topology : 0 (base) 
+      Active Timer: 3 min
+      Distance: internal 90 external 170
+      Maximum path: 4
+      Maximum hopcount 100
+      Maximum metric variance 1
+
+  Automatic Summarization: enabled
+  Maximum path: 4
+  Routing for Networks:
+    100.100.100.0/24
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: internal 90 external 170
+
+R1(config-router)#
+DEBUG:netmiko:do show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "eigrp 7"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  Redistributing: eigrp 7
+  EIGRP-IPv4 Protocol for AS(7)
+    Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+    NSF-aware route hold timer is 240
+    Router-ID: 200.200.200.1
+    Topology : 0 (base) 
+      Active Timer: 3 min
+      Distance: internal 90 external 170
+      Maximum path: 4
+      Maximum hopcount 100
+      Maximum metric variance 1
+
+  Automatic Summarization: enabled
+  Maximum path: 4
+  Routing for Networks:
+    100.100.100.0/24
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: internal 90 external 170
+
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp 7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'auto-summary\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: auto-summary
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (auto\-summary) auto-summary
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#auto-summary
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'router eigrp 7\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: router eigrp
+DEBUG:netmiko:read_channel:  7
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (router\ eigrp\ 7) router eigrp 7
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'variance 2\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: varian
+DEBUG:netmiko:read_channel: ce 2
+R1(config-router)#
+DEBUG:netmiko:Pattern found: (variance\ 2) variance 2
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+R1(config-router)#
+DEBUG:netmiko:router eigrp 7
+R1(config-router)#variance 2
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ([>#]) 
+R1(config-router)#
+DEBUG:netmiko:write_channel: b'do show ip protocols\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: do show ip prot
+DEBUG:netmiko:read_channel: ocols
+DEBUG:netmiko:Pattern found: (do\ show\ ip\ protocols) do show ip protocols
+DEBUG:netmiko:read_channel: 
+
+DEBUG:netmiko:read_channel: *** IP Routing is NSF aware ***
+
+Routing Protocol is "eigrp 7"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  Redistributing: eigrp 7
+  EIGRP-IPv4 Protocol for AS(7)
+    Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+    NSF-aware route hold timer is 240
+    Router-ID: 200.200.200.1
+    Topology : 0 (base) 
+      Active Timer: 3 min
+      Distance: internal 90 external 170
+      Maximum path: 4
+      Maximum hopcount 100
+      Maximum metric variance 2
+
+  Automatic Summarization: enabled
+  Maximum path: 4
+  Routing for Networks:
+    100.100.100.0/24
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: internal 90 external 170
+
+R1(config-router)#
+DEBUG:netmiko:Pattern found: ((?:R1.*$|#.*$)) 
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "eigrp 7"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  Redistributing: eigrp 7
+  EIGRP-IPv4 Protocol for AS(7)
+    Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+    NSF-aware route hold timer is 240
+    Router-ID: 200.200.200.1
+    Topology : 0 (base) 
+      Active Timer: 3 min
+      Distance: internal 90 external 170
+      Maximum path: 4
+      Maximum hopcount 100
+      Maximum metric variance 2
+
+  Automatic Summarization: enabled
+  Maximum path: 4
+  Routing for Networks:
+    100.100.100.0/24
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: internal 90 external 170
+
+R1(config-router)#
+DEBUG:netmiko:do show ip protocols
+*** IP Routing is NSF aware ***
+
+Routing Protocol is "eigrp 7"
+  Outgoing update filter list for all interfaces is not set
+  Incoming update filter list for all interfaces is not set
+  Default networks flagged in outgoing updates
+  Default networks accepted from incoming updates
+  Redistributing: eigrp 7
+  EIGRP-IPv4 Protocol for AS(7)
+    Metric weight K1=1, K2=0, K3=1, K4=0, K5=0
+    NSF-aware route hold timer is 240
+    Router-ID: 200.200.200.1
+    Topology : 0 (base) 
+      Active Timer: 3 min
+      Distance: internal 90 external 170
+      Maximum path: 4
+      Maximum hopcount 100
+      Maximum metric variance 2
+
+  Automatic Summarization: enabled
+  Maximum path: 4
+  Routing for Networks:
+    100.100.100.0/24
+  Routing Information Sources:
+    Gateway         Distance      Last Update
+  Distance: internal 90 external 170
+
+R1(config-router)#
+DEBUG:paramiko.transport:starting thread (client mode): 0x9c18b448
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.5.0
+DEBUG:paramiko.transport:Remote version/idstring: SSH-1.99-Cisco-1.25
+INFO:paramiko.transport:Connected (version 1.99, client Cisco-1.25)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: diffie-hellman-group-exchange-sha1, diffie-hellman-group14-sha1, diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:server key: ssh-rsa
+DEBUG:paramiko.transport:client encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:server encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:client mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:server mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: diffie-hellman-group-exchange-sha1
+DEBUG:paramiko.transport:HostKey: ssh-rsa
+DEBUG:paramiko.transport:Cipher: aes128-cbc
+DEBUG:paramiko.transport:MAC: hmac-sha1
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:Got server p (2048 bits)
+DEBUG:paramiko.transport:kex engine KexGex specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 192.168.1.111: b'3cc44a77cbde7832353bb47230faa299'
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+R1#
+R1#
+DEBUG:netmiko:read_channel: terminal widt
+DEBUG:netmiko:read_channel: h 511
+
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+R1#
+R1#terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1#terminal length 0
+
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R1#terminal length 0
+DEBUG:netmiko:
+R1#terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: R1#
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:write_channel: b'show run | i host\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show run | i host
+
+DEBUG:netmiko:Pattern found: (show\ run\ \|\ i\ host) show run | i host
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: hostname R1
+R1#
+DEBUG:paramiko.transport:starting thread (client mode): 0x9c191a48
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.5.0
+DEBUG:paramiko.transport:Remote version/idstring: SSH-1.99-Cisco-1.25
+INFO:paramiko.transport:Connected (version 1.99, client Cisco-1.25)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: diffie-hellman-group-exchange-sha1, diffie-hellman-group14-sha1, diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:server key: ssh-rsa
+DEBUG:paramiko.transport:client encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:server encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:client mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:server mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: diffie-hellman-group-exchange-sha1
+DEBUG:paramiko.transport:HostKey: ssh-rsa
+DEBUG:paramiko.transport:Cipher: aes128-cbc
+DEBUG:paramiko.transport:MAC: hmac-sha1
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:Got server p (2048 bits)
+DEBUG:paramiko.transport:kex engine KexGex specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 192.168.1.50: b'f0fb1a44dfceff79a7a58f05934b2c6e'
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+R2#
+R2#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: terminal width 511
+
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+R2#
+R2#terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R2#
+DEBUG:netmiko:read_channel: terminal length 0
+R2#
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R2#terminal length 0
+DEBUG:netmiko:
+R2#terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R2#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R2#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R2#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R2#
+DEBUG:netmiko:write_channel: b'show run | i host\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show run | i host
+
+DEBUG:netmiko:Pattern found: (show\ run\ \|\ i\ host) show run | i host
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: hostname R2
+R2#
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:starting thread (client mode): 0xbd50a888
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.5.0
+DEBUG:paramiko.transport:Remote version/idstring: SSH-1.99-Cisco-1.25
+INFO:paramiko.transport:Connected (version 1.99, client Cisco-1.25)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: diffie-hellman-group-exchange-sha1, diffie-hellman-group14-sha1, diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:server key: ssh-rsa
+DEBUG:paramiko.transport:client encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:server encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:client mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:server mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: diffie-hellman-group-exchange-sha1
+DEBUG:paramiko.transport:HostKey: ssh-rsa
+DEBUG:paramiko.transport:Cipher: aes128-cbc
+DEBUG:paramiko.transport:MAC: hmac-sha1
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:Got server p (2048 bits)
+DEBUG:paramiko.transport:kex engine KexGex specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 192.168.1.111: b'3cc44a77cbde7832353bb47230faa299'
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+R1#
+R1#
+DEBUG:netmiko:read_channel: terminal width 511
+
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+R1#
+R1#terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1#terminal length 0
+R1#
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R1#terminal length 0
+DEBUG:netmiko:
+R1#terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:write_channel: b'show run | i host\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show run | i host
+
+DEBUG:netmiko:Pattern found: (show\ run\ \|\ i\ host) show run | i host
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: hostname R1
+R1#
+DEBUG:paramiko.transport:EOF in transport thread
+DEBUG:paramiko.transport:starting thread (client mode): 0xa082a908
+DEBUG:paramiko.transport:Local version/idstring: SSH-2.0-paramiko_3.5.0
+DEBUG:paramiko.transport:Remote version/idstring: SSH-1.99-Cisco-1.25
+INFO:paramiko.transport:Connected (version 1.99, client Cisco-1.25)
+DEBUG:paramiko.transport:=== Key exchange possibilities ===
+DEBUG:paramiko.transport:kex algos: diffie-hellman-group-exchange-sha1, diffie-hellman-group14-sha1, diffie-hellman-group1-sha1
+DEBUG:paramiko.transport:server key: ssh-rsa
+DEBUG:paramiko.transport:client encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:server encrypt: aes128-cbc, 3des-cbc, aes192-cbc, aes256-cbc
+DEBUG:paramiko.transport:client mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:server mac: hmac-sha1, hmac-sha1-96, hmac-md5, hmac-md5-96
+DEBUG:paramiko.transport:client compress: none
+DEBUG:paramiko.transport:server compress: none
+DEBUG:paramiko.transport:client lang: <none>
+DEBUG:paramiko.transport:server lang: <none>
+DEBUG:paramiko.transport:kex follows: False
+DEBUG:paramiko.transport:=== Key exchange agreements ===
+DEBUG:paramiko.transport:Kex: diffie-hellman-group-exchange-sha1
+DEBUG:paramiko.transport:HostKey: ssh-rsa
+DEBUG:paramiko.transport:Cipher: aes128-cbc
+DEBUG:paramiko.transport:MAC: hmac-sha1
+DEBUG:paramiko.transport:Compression: none
+DEBUG:paramiko.transport:=== End of kex handshake ===
+DEBUG:paramiko.transport:Got server p (2048 bits)
+DEBUG:paramiko.transport:kex engine KexGex specified hash_algo <built-in function openssl_sha1>
+DEBUG:paramiko.transport:Switch to new keys ...
+DEBUG:paramiko.transport:Adding ssh-rsa host key for 192.168.1.111: b'3cc44a77cbde7832353bb47230faa299'
+DEBUG:paramiko.transport:userauth is OK
+INFO:paramiko.transport:Authentication (password) successful!
+DEBUG:paramiko.transport:[chan 0] Max packet in: 32768 bytes
+DEBUG:paramiko.transport:[chan 0] Max packet out: 4096 bytes
+DEBUG:paramiko.transport:Secsh channel 0 opened.
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:paramiko.transport:[chan 0] Sesch channel 0 request ok
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:write_channel: b'terminal width 511\n'
+DEBUG:netmiko:read_channel: 
+R1#
+R1#
+DEBUG:netmiko:read_channel: terminal wid
+DEBUG:netmiko:read_channel: th 511
+
+DEBUG:netmiko:Pattern found: (terminal width 511) 
+R1#
+R1#terminal width 511
+DEBUG:netmiko:In disable_paging
+DEBUG:netmiko:Command: terminal length 0
+
+DEBUG:netmiko:write_channel: b'terminal length 0\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: R1#terminal 
+DEBUG:netmiko:read_channel: length 0
+R1#
+DEBUG:netmiko:Pattern found: (terminal\ length\ 0) 
+R1#terminal length 0
+DEBUG:netmiko:
+R1#terminal length 0
+DEBUG:netmiko:Exiting disable_paging
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:Clear buffer detects data in the channel
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:
+Parenthesis found in pattern.
+
+pattern: (\#|>)
+
+
+This can be problemtic when used in read_until_pattern().
+
+You should ensure that you use either non-capture groups i.e. '(?:' or that the
+parenthesis completely wrap the pattern '(pattern)'
+DEBUG:netmiko:Pattern found: (\#|>) 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:write_channel: b'\n'
+DEBUG:netmiko:read_channel: 
+R1#
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:[find_prompt()]: prompt is R1#
+DEBUG:netmiko:write_channel: b'show run | i host\n'
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: show run | i host
+
+DEBUG:netmiko:Pattern found: (show\ run\ \|\ i\ host) show run | i host
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: 
+DEBUG:netmiko:read_channel: hostname R1
+R1#
+ERROR:paramiko.transport:Socket exception: An existing connection was forcibly closed by the remote host (10054)
