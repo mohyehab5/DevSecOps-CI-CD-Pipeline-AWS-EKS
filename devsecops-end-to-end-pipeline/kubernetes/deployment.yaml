@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devsecops-app
+  namespace: devsecops-app
+  labels:
+    app: devsecops-app
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: devsecops-app
+  template:
+    metadata:
+      labels:
+        app: devsecops-app
+    spec:
+      serviceAccountName: devsecops-app-sa
+      automountServiceAccountToken: false # pod doesn't need K8s API access — disabled explicitly
+
+      # Pod-level hardening (enforced again here even though the namespace already requires it —
+      # defense in depth, and this manifest still passes if applied to a less-strict namespace).
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1001
+        fsGroup: 1001
+        seccompProfile:
+          type: RuntimeDefault
+
+      containers:
+        - name: app
+          image: ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/devsecops-demo-app:IMAGE_TAG
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: http
+
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi
+
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+
+          readinessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 3
+            periodSeconds: 5
+
+          envFrom:
+            - secretRef:
+                name: app-secrets # populated by External Secrets Operator, see kubernetes/external-secret.yaml
+
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp # writable scratch dir since rootfs is read-only
+
+      volumes:
+        - name: tmp
+          emptyDir: {}

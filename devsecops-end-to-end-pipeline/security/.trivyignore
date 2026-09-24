@@ -1,0 +1,6 @@
+# Every ignored CVE here MUST have a linked justification — an empty/unexplained
+# .trivyignore is itself a security review finding.
+#
+# Example format (kept empty in this template — add real entries only with a
+# documented compensating control and a review-by date):
+# CVE-2024-XXXXX  # justification: not reachable, package used in test-only path. Review: 2026-12-01

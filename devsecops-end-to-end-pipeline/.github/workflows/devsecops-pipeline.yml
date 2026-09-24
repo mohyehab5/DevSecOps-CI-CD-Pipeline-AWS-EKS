@@ -1,0 +1,187 @@
+name: DevSecOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  id-token: write   # required for OIDC -> AWS auth, no stored AWS keys
+  contents: read
+  security-events: write # required to upload SARIF results to the Security tab
+
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: devsecops-demo-app
+  EKS_CLUSTER: devsecops-eks-cluster
+
+jobs:
+  # ---------- STAGE 1: CODE QUALITY + UNIT TESTS ----------
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install -r app/requirements.txt pytest flake8
+      - name: Lint
+        run: flake8 app/src --max-line-length=120
+      - name: Unit tests
+        run: pytest app/tests -v
+
+  # ---------- STAGE 2: SAST (Static Application Security Testing) ----------
+  sast:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Semgrep SAST scan
+        uses: semgrep/semgrep-action@v1
+        with:
+          config: p/owasp-top-ten
+      - name: Upload SARIF to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif
+
+  # ---------- STAGE 3: SCA (Software Composition Analysis — dependency CVEs) ----------
+  sca:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+      - name: Scan dependencies with Trivy (filesystem mode)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scan-ref: app/requirements.txt
+          severity: CRITICAL,HIGH
+          exit-code: "1" # fail the build if a critical/high CVE is found in a dependency
+          format: sarif
+          output: trivy-fs.sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: trivy-fs.sarif
+
+  # ---------- STAGE 4: SECRET SCANNING ----------
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Gitleaks — scan full git history for committed secrets
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # ---------- STAGE 5: IaC SECURITY SCANNING ----------
+  iac-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkov — scan Terraform for misconfigurations
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: terraform/
+          framework: terraform
+          output_format: sarif
+          output_file_path: checkov.sarif
+      - uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: checkov.sarif
+      - name: Conftest — OPA policy checks against Kubernetes manifests
+        run: |
+          docker run --rm -v "$PWD/kubernetes:/project" openpolicyagent/conftest \
+            test /project --policy /project/../security/opa-policies
+
+  # ---------- STAGE 6: BUILD, SIGN & SCAN THE CONTAINER IMAGE ----------
+  build-and-scan-image:
+    runs-on: ubuntu-latest
+    needs: [sast, sca, secret-scan, iac-scan]
+    if: github.ref == 'refs/heads/main'
+    outputs:
+      image_uri: ${{ steps.build.outputs.image_uri }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials via OIDC (no long-lived keys)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_GITHUB_ACTIONS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to ECR
+        id: ecr-login
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build image
+        id: build
+        run: |
+          IMAGE_URI="${{ steps.ecr-login.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}"
+          docker build -t "$IMAGE_URI" app/
+          echo "image_uri=$IMAGE_URI" >> "$GITHUB_OUTPUT"
+
+      - name: Scan built image with Trivy (fail on CRITICAL)
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ steps.build.outputs.image_uri }}
+          severity: CRITICAL
+          exit-code: "1"
+          ignore-unfixed: true
+
+      - name: Push image to ECR
+        run: docker push "${{ steps.build.outputs.image_uri }}"
+
+      - name: Sign image with Cosign (Sigstore) — keyless, OIDC-based signing
+        uses: sigstore/cosign-installer@v3
+      - run: cosign sign --yes "${{ steps.build.outputs.image_uri }}"
+
+  # ---------- STAGE 7: DEPLOY VIA GITOPS (ArgoCD reconciles from git, this job just updates the manifest tag) ----------
+  update-manifest-for-gitops:
+    runs-on: ubuntu-latest
+    needs: build-and-scan-image
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bump image tag in the deployment manifest
+        run: |
+          sed -i "s#devsecops-demo-app:.*#devsecops-demo-app:${{ github.sha }}#g" kubernetes/deployment.yaml
+      - name: Commit and push the updated manifest
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add kubernetes/deployment.yaml
+          git commit -m "ci: deploy image ${{ github.sha }}"
+          git push
+      # ArgoCD (see argocd/application.yaml) watches this repo/path and auto-syncs the
+      # cluster to match — this job does NOT run kubectl apply directly. That's the
+      # whole point of GitOps: git is the single source of truth for cluster state.
+
+  # ---------- STAGE 8: DAST (Dynamic Application Security Testing) against the deployed app ----------
+  dast:
+    runs-on: ubuntu-latest
+    needs: update-manifest-for-gitops
+    steps:
+      - name: Wait for ArgoCD sync
+        run: sleep 90
+      - name: OWASP ZAP Baseline Scan
+        uses: zaproxy/action-baseline@v0.12.0
+        with:
+          target: "https://app.example.com"
+          fail_action: true
+
+  notify:
+    runs-on: ubuntu-latest
+    needs: [dast]
+    if: always()
+    steps:
+      - name: Notify Slack of pipeline result
+        uses: slackapi/slack-github-action@v1.27.0
+        with:
+          payload: |
+            {"text": "DevSecOps pipeline for ${{ github.sha }}: ${{ job.status }}"}
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

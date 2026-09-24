@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devsecops-app
+  namespace: devsecops-app
+spec:
+  selector:
+    app: devsecops-app
+  ports:
+    - port: 80
+      targetPort: 8080
+      name: http
+  type: ClusterIP # internal only — the Ingress/ALB is the sole entry point

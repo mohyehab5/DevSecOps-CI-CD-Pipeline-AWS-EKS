@@ -1,0 +1,18 @@
+# Added to kube-prometheus-stack's `additionalScrapeConfigs`, or defined as a
+# ServiceMonitor if the Prometheus Operator is installed (preferred in-cluster approach).
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: devsecops-app
+  namespace: devsecops-app
+  labels:
+    release: kube-prometheus-stack
+spec:
+  selector:
+    matchLabels:
+      app: devsecops-app
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s

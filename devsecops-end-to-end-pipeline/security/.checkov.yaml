@@ -1,0 +1,11 @@
+framework:
+  - terraform
+
+soft-fail: false   # a HIGH/CRITICAL finding fails the pipeline, it doesn't just warn
+
+skip-check:
+  # CKV_AWS_339: EKS public endpoint access — intentionally scoped via public_access_cidrs
+  # in terraform/eks.tf rather than fully disabled, documented decision, not an oversight.
+  - CKV_AWS_339
+
+output: sarif

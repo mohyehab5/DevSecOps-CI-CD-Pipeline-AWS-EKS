@@ -1,0 +1,39 @@
+# Zero-trust pod networking: deny everything by default, then explicitly allow
+# only the traffic the app actually needs.
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: devsecops-app
+spec:
+  podSelector: {}
+  policyTypes: ["Ingress", "Egress"]
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-from-alb-and-egress-dns-https
+  namespace: devsecops-app
+spec:
+  podSelector:
+    matchLabels:
+      app: devsecops-app
+  policyTypes: ["Ingress", "Egress"]
+  ingress:
+    - from:
+        - namespaceSelector: {} # traffic arrives via the AWS Load Balancer Controller target group
+      ports:
+        - port: 8080
+          protocol: TCP
+  egress:
+    - to: [] # DNS resolution
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP
+    - to: [] # outbound HTTPS only (e.g. to pull secrets, call downstream APIs)
+      ports:
+        - port: 443
+          protocol: TCP

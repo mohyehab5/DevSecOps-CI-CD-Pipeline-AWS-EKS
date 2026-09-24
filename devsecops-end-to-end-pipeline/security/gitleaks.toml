@@ -1,0 +1,13 @@
+title = "devsecops-end-to-end-pipeline gitleaks config"
+
+# Extend the default, well-maintained ruleset (AWS keys, private keys, generic
+# high-entropy secrets, etc.) instead of reinventing detection patterns.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Files that legitimately contain example/placeholder values"
+paths = [
+  '''terraform/.*\.tf''',   # contains placeholder ARNs like ACCOUNT_ID, not real secrets
+  '''docs/.*\.md''',
+]

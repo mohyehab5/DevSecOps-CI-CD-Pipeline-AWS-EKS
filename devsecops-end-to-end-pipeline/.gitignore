@@ -1,0 +1,20 @@
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+.terraform.lock.hcl
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+*.egg-info/
+
+# Secrets — never commit real values
+*.env
+.env.*
+secrets.yaml
